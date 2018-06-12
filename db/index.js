@@ -10,3 +10,4 @@ exports.getPhrase = function (name) {
   }
   return phrases[name];
 };
+
