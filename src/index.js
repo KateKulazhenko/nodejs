@@ -1,4 +1,4 @@
-const db = require('./../db/ru');
+const db = require('./db/ru');
 
 function User(name) {
     this.name = name;
