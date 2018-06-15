@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+    <meta charset="utf-8">
+  <body>
+      <div>
+          <h2>Welcome to the chat!</h2>
+          <form id="publish" class="form">
+              <input type="text" name="message" />
+              <input type="button" class="button" value="Send"/>
+          </form>
+          <div class="messages"></div>
+      </div>
+  </body>  
+  <script>
+      publish.onsubmit - function() {
+          var xhr = new XMLHttpRequest();
+
+          xhr.open('POST', '/publish', true);
+
+          xhr.send(JSON.stringify({message: this.elements.message.value}));
+
+          this.elements.message.value = '';
+
+          return false;
+      }
+      
+      subscribe();
+
+      function subscribe() {
+          var xhr = new XMLHttpRequest();
+
+          xhr.open('POST', '/subscribe', true);
+
+          xhr.onload = function() {
+              var div = document.createElement('div');
+              div.textContent = this.responseText;
+          }
+
+          xhr.onerror = xhr.onabort = function() {
+            setTimeout(subscribe, 500);
+        }
+        xhr.send('');
+      }
+  </script>
+</html>

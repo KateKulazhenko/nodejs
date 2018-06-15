@@ -2,7 +2,7 @@ const http = require('http');
 const fs = require('fs');
 
 http.createServer(function(req, res){
-    const info;
+    var info;
 
     if(req.url === '/') {
         fs.readFile('index.html', function(err, info){
